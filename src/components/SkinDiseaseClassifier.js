@@ -114,7 +114,7 @@ const SkinDiseaseClassifier = () => {
           {prediction.resized_image_url && (
             <img
               src={prediction.resized_image_url}
-              // alt="Resized Image"
+              alt="Resized skin condition image"
               className="mt-4 max-w-full h-auto rounded"
             />
           )}
