@@ -1,0 +1,35 @@
+.about-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.about-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about-welcome {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.about-section {
+  margin-bottom: 20px;
+}
+
+.about-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.about-section ul {
+  padding-left: 20px;
+}
