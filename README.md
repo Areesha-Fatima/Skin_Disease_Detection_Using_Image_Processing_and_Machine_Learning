@@ -16,19 +16,13 @@ An AI-powered full-stack web application designed to detect and classify various
 ## 🛠️ Tech Stack
 
 ### Frontend (`client/`)
-<<<<<<< HEAD
-=======
 
->>>>>>> 0a3bd7b (Update)
 - **Framework:** React.js
 - **Styling:** CSS3 / Modern UI components
 - **Build Tool:** npm / Webpack
 
 ### Backend & Model (`server/` & `model/`)
-<<<<<<< HEAD
-=======
 
->>>>>>> 0a3bd7b (Update)
 - **API Framework:** FastAPI / Uvicorn
 - **Deep Learning Framework:** TensorFlow / Keras (Python)
 - **Image Processing:** OpenCV (`cv2`)
@@ -66,15 +60,13 @@ Skin_Disease_Detection/
 ├── .gitignore             # Ignored files and directories
 └── README.md              # Project documentation
 ```
-<<<<<<< HEAD
+
 ## ⚙️ Local Setup & Installation
    To run this project locally on your machine, follow these steps:
-=======
 
 ## ⚙️ Local Setup & Installation
 
 To run this project locally on your machine, follow these steps:
->>>>>>> 0a3bd7b (Update)
 
 1. **Clone the repository:**
 
@@ -91,19 +83,17 @@ To run this project locally on your machine, follow these steps:
    ```
    (The React app will run locally on http://localhost:3000)
 
-<<<<<<< HEAD
 3. **Set Up the Model & Python Backend (model)**
-=======
+
    (The React app will run locally on http://localhost:3000)
 
 3. **Set Up the Model & Python Backend (model)**
 
->>>>>>> 0a3bd7b (Update)
    ```bash
    cd model
    env_one\Scripts\activate
    pip install -r requirements.txt
-<<<<<<< HEAD
+
    ```
 
 4. **Set Up the Node Server (server)**
@@ -114,9 +104,6 @@ To run this project locally on your machine, follow these steps:
    npm start
    ```
 
-=======
-   ```
-
 4. **Set Up the Node Server (server)**
    Open another terminal window and run:
    ```bash
@@ -125,7 +112,6 @@ To run this project locally on your machine, follow these steps:
    npm start
    ```
 
->>>>>>> 0a3bd7b (Update)
 ## Usage
 
 1. Navigate to the application in your web browser.
@@ -134,7 +120,7 @@ To run this project locally on your machine, follow these steps:
 4. Review the prediction result, including the disease name, confidence score, and suggested remedies.
 
 ## API Endpoints
-<<<<<<< HEAD
+
 - **POST /predict/**: 
    - **Description**: Receives an image file and returns prediction results.
    - **Request Format**: FormData containing the image file.
@@ -146,19 +132,3 @@ To run this project locally on your machine, follow these steps:
 ## 👤 Author
 - Areesha Fatima
 - BS Computer Science, Iqra University
-
-=======
-
-- **POST /predict/**:
-  - **Description**: Receives an image file and returns prediction results.
-  - **Request Format**: FormData containing the image file.
-  - **Response**: JSON object containing:
-    - `disease_name`: Name of the predicted disease.
-    - `confidence`: Confidence score of the prediction.
-    - `recommendation`: Suggested remedies for the identified condition.
-
-## 👤 Author
-
-- Areesha Fatima
-- BS Computer Science, Iqra University
->>>>>>> 0a3bd7b (Update)
