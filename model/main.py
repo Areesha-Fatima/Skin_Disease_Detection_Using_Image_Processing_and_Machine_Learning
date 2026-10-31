@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],  
 )
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")), name="static")
 
 model_path = r'C:\Users\92337\Desktop\FYP PROJECT\skin-web\skin-web\model\app\best_model_updated.h5'
 
