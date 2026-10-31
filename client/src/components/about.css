@@ -1,0 +1,225 @@
+/* ==========================================================================
+   About Page Stylesheet
+   ========================================================================== */
+.about-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* Hero Header */
+.about-hero {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.about-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.about-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+.about-welcome {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Main Cards Grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(14, 165, 233, 0.08);
+  border-color: #38bdf8;
+}
+
+.card-icon {
+  font-size: 2rem;
+  background: #f8fafc;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.about-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* Workflow Section */
+.about-workflow-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 20px;
+  padding: 40px 30px;
+  border: 1px solid #e2e8f0;
+}
+
+.about-workflow-section h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 30px 0;
+}
+
+.workflow-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.workflow-step-card {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  border: 1px solid #e2e8f0;
+}
+
+.step-num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.workflow-step-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.workflow-step-card p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Disclaimer & Contact Footer Grid */
+.about-info-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.info-box {
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+.disclaimer-box {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.disclaimer-box h3 {
+  color: #b45309;
+  margin: 0 0 10px 0;
+  font-size: 1.15rem;
+}
+
+.disclaimer-box p {
+  color: #78350f;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contact-box {
+  background: #ffffff;
+}
+
+.contact-box h3 {
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  font-size: 1.15rem;
+}
+
+.contact-box p {
+  color: #64748b;
+  font-size: 0.92rem;
+  margin: 0 0 14px 0;
+}
+
+.contact-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.92rem;
+  color: #334155;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 900px) {
+  .about-grid,
+  .workflow-steps-grid,
+  .about-info-footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

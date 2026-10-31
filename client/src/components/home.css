@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Global Layout & Container
+   ========================================================================== */
+.home-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ==========================================================================
+   Hero Section & Hover Slide Animation
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  background-color: #0f172a;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Dark overlay sliding in from the left */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgba(15, 23, 42, 0.75) 80%,
+    rgba(15, 23, 42, 0) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  box-sizing: border-box;
+  color: #ffffff;
+
+  /* Slide Animation setup */
+  transform: translateX(-100%);
+  opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Trigger animation on hover */
+.hero-section:hover .hero-overlay {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-section:hover .hero-image {
+  transform: scale(1.04);
+}
+
+/* High-contrast crisp white typography */
+.hero-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.6;
+  color: #f1f5f9;
+  margin: 0 0 24px 0;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   Buttons & Badges
+   ========================================================================== */
+.primary-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(14, 165, 233, 0.5);
+}
+
+.secondary-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #ffffff;
+  color: #0284c7;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   Section Layouts
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 36px auto;
+}
+
+.section-header h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+.section-description {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.feature-grid,
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.feature-image-card,
+.workflow-image-card {
+  width: 100%;
+  height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.feature-img,
+.workflow-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.feature-icon {
+  font-size: 1.1rem;
+  background-color: #f1f5f9;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-quote-box {
+  padding: 14px 18px;
+  background-color: #f8fafc;
+  border-left: 4px solid #0ea5e9;
+  border-radius: 6px;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+/* Workflow Cards */
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.step-number {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-card h3 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.step-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* CTA Banner */
+.cta-banner {
+  background: linear-gradient(135deg, #0284c7 0%, #0f172a 100%);
+  border-radius: 20px;
+  padding: 40px 24px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.cta-banner-content h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.cta-banner-content p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  margin: 0 0 24px 0;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints & Touch Devices
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-overlay {
+    width: 75%;
+    padding: 30px;
+  }
+
+  .feature-grid,
+  .workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-image-card {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-image-wrapper {
+    min-height: 360px;
+  }
+
+  .hero-overlay {
+    width: 100%;
+    padding: 24px;
+    background: linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.88) 0%,
+      rgba(15, 23, 42, 0.95) 100%
+    );
+    /* Keep overlay visible on mobile touchscreens */
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .feature-image-card,
+  .workflow-image-card {
+    height: 260px;
+  }
+}
