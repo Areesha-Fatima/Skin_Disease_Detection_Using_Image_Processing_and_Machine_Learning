@@ -22,7 +22,9 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")), name="static")
 
-model_path = r'C:\Users\92337\Desktop\FYP PROJECT\skin-web\skin-web\model\app\best_model_updated.h5'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, "app", "best_model_updated.h5")
 
 if not os.path.isfile(model_path):
     raise FileNotFoundError(f"Model file not found at: {model_path}")
