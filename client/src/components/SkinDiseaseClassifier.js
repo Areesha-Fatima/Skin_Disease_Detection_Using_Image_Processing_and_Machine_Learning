@@ -61,7 +61,7 @@ const SkinDiseaseClassifier = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
 
       setPrediction(response.data);
@@ -69,7 +69,7 @@ const SkinDiseaseClassifier = () => {
     } catch (error) {
       setError(
         error.response?.data?.message ||
-          "An error occurred while processing the image"
+          "An error occurred while processing the image",
       );
       console.error("Error:", error);
     } finally {
@@ -114,7 +114,7 @@ const SkinDiseaseClassifier = () => {
           {prediction.resized_image_url && (
             <img
               src={prediction.resized_image_url}
-              alt="Resized skin condition image"
+              alt="Resized skin condition sample"
               className="mt-4 max-w-full h-auto rounded"
             />
           )}
