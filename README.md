@@ -1,41 +1,93 @@
-# Skin Disease Analyzer
+# Skin Disease Detection (FYP)
 
-## Description
-The Skin Disease Classifier is a web application that utilizes artificial intelligence to help users identify skin conditions based on uploaded images. The app provides predictions along with confidence scores and personalized recommendations for treatment.
+An AI-powered full-stack web application designed to detect and classify various skin conditions from user-uploaded images. This system utilizes a deep learning Convolutional Neural Network (CNN) model built with TensorFlow/Keras, served via a high-performance FastAPI backend, and presented through an interactive React.js frontend.
 
-## Features
-- Upload an image of a skin condition.
-- Get instant predictions of potential skin diseases.
-- View confidence scores for predictions.
-- Receive personalized remedies based on the identified condition.
-- Visualize heatmap images indicating affected areas (if available).
+---
 
-## Technologies Used
-- **Frontend:** React, JavaScript, HTML, CSS
-- **Backend:** Python (Flask/Django or similar), TensorFlow/Keras for model inference
-- **Libraries:** Axios for HTTP requests, FileReader API for image processing
+## 🚀 Key Features
 
-## Installation
+- **AI-Driven Prediction:** Classifies skin lesion images using a trained Convolutional Neural Network model (`h5best_model.keras`).
+- **Interactive Frontend:** Responsive user interface built with React.js for seamless image uploading and result visualization.
+- **Robust Backend API:** Powered by FastAPI to handle asynchronous image processing, model inference, and routing.
+- **Full-Stack Architecture:** Clean separation of concerns with dedicated client, server, and model directories.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend (`client/`)
+- **Framework:** React.js
+- **Styling:** CSS3 / Modern UI components
+- **Build Tool:** npm / Webpack
+
+### Backend & Model (`server/` & `model/`)
+- **API Framework:** FastAPI / Uvicorn
+- **Deep Learning Framework:** TensorFlow / Keras (Python)
+- **Image Processing:** OpenCV (`cv2`)
+- **Server/Auth Utilities:** Node.js / Express integration modules
+
+---
+
+## 📂 Project Structure
+
+```text
+Skin_Disease_Detection/
+│
+├── client/                # React frontend application
+│   ├── public/            # Static assets (icons, manifest, index.html)
+│   ├── src/               # React components and styling
+│   ├── package.json       # Frontend dependencies
+│   └── package-lock.json
+│
+├── model/                 # Deep learning model & scripts
+│   ├── app/               # Saved model weights (h5best_model.keras)
+│   ├── env_one/           # Python virtual environment binaries & scripts
+│   ├── main.py            # Model inference pipeline
+│   └── requirements.txt   # Python machine learning dependencies
+│
+├── server/                # Backend infrastructure & database routes
+│   ├── connectiondb/      # Database connection configurations
+│   ├── controllers/       # Request handling logic
+│   ├── middlewares/       # Authentication and security middlewares
+│   ├── models/            # Database schemas
+│   ├── routes/            # API routing endpoints
+│   ├── app.js             # Node server entry point
+│   ├── package.json       # Backend dependencies
+│   └── vercel.json        # Deployment configuration
+│
+├── .gitignore             # Ignored files and directories
+└── README.md              # Project documentation
+```
+## ⚙️ Local Setup & Installation
+   To run this project locally on your machine, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/skin-web.git
-   cd skin-web
+   git clone https://github.com/Areesha-Fatima/Skin_Disease_Detection.git
+   cd Skin_Disease_Detection
    ```
 
-2. **Install dependencies:**
+2. **Set Up the Frontend (client)**
    Make sure you have Node.js installed. Then run:
    ```bash
    npm install
    ```
+   (The React app will run locally on http://localhost:3000)
 
-3. **Start the development server:**
+3. **Set Up the Model & Python Backend (model)**
    ```bash
-   npm start
+   cd model
+   env_one\Scripts\activate
+   pip install -r requirements.txt
    ```
 
-4. **Access the app:**
-   Open your web browser and navigate to `http://localhost:3000`.
+4. **Set Up the Node Server (server)**
+   Open another terminal window and run: 
+      ```bash
+   cd server
+   npm install
+   npm start
+   ```
 
 ## Usage
 1. Navigate to the application in your web browser.
@@ -51,20 +103,8 @@ The Skin Disease Classifier is a web application that utilizes artificial intell
      - `disease_name`: Name of the predicted disease.
      - `confidence`: Confidence score of the prediction.
      - `recommendation`: Suggested remedies for the identified condition.
-     - `heatmap_image_url`: (Optional) URL of the heatmap image.
 
-## Contributing
-Contributions are welcome! Please feel free to submit a pull request or open an issue for discussion.
+## 👤 Author
+- Areesha Fatima
+- BS Computer Science, Iqra University
 
-1. Fork the repository.
-2. Create your feature branch: `git checkout -b feature/AmazingFeature`.
-3. Commit your changes: `git commit -m 'Add some AmazingFeature'`.
-4. Push to the branch: `git push origin feature/AmazingFeature`.
-5. Open a pull request.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-- Thanks to the open-source community for providing libraries and frameworks that made this project possible.
-- Special thanks to any individuals or organizations whose contributions have been instrumental in this project.
