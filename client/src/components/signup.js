@@ -18,11 +18,12 @@ function REGISTER() {
   } = useForm();
   const navigate = useNavigate();
 
+  const API_URL =
+    "https://skin-disease-detection-using-image-cjgi.onrender.com";
+
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:8000/api/signup", data);
-      console.log(res);
-
+      const res = await axios.post(`${API_URL}/api/signup`, data);
       if (res.data.success) {
         toast.success("Registration successful! Redirecting to login...");
         setTimeout(() => {

@@ -19,10 +19,12 @@ const LOGIN = () => {
   } = useForm();
 
   axios.defaults.withCredentials = true;
+  const API_URL =
+    "https://skin-disease-detection-using-image-cjgi.onrender.com";
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8000/api/login", {
+      const response = await axios.post(`${API_URL}/api/login`, {
         email: data.email,
         password: data.password,
       });
