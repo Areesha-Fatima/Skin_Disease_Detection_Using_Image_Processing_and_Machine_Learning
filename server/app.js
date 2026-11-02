@@ -12,10 +12,12 @@ const app = express();
 connectDB();
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://skin-disease-detection-system.netlify.app", // Yahan apna Netlify URL exact likhein
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
 };
+
+app.use(cors(corsOptions));
 
 app.use(cors(corsOptions));
 
