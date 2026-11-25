@@ -5,8 +5,10 @@ const User = require("../models/userModel");
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRY = "10m";
 
-const USER_EXISTS_ERROR = "User already exists. Please login or use a different email.";
-const INVALID_CREDENTIALS_ERROR = "Invalid credentials. Please check your email and password.";
+const USER_EXISTS_ERROR =
+  "User already exists. Please login or use a different email.";
+const INVALID_CREDENTIALS_ERROR =
+  "Invalid credentials. Please check your email and password.";
 const SERVER_ERROR_MESSAGE = "Server error. Please try again later.";
 const USER_REGISTERED_SUCCESS = "User registered successfully";
 const LOGIN_SUCCESS_MESSAGE = "Login successful";

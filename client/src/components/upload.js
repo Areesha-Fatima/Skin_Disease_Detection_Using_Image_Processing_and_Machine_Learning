@@ -31,10 +31,13 @@ function UPLOAD() {
         const formData = new FormData();
         formData.append("file", image);
 
-        const response = await fetch("http://127.0.0.1:8000/predict", {
-          method: "POST",
-          body: formData,
-        });
+        const response = await fetch(
+          "https://skin-disease-detection-backend-7tdn.onrender.com/predict",
+          {
+            method: "POST",
+            body: formData,
+          },
+        );
 
         if (!response.ok) {
           throw new Error("Error in prediction API");
