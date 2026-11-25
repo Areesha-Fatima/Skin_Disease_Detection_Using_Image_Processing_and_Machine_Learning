@@ -84,9 +84,9 @@ async def upload_image(file: UploadFile = File(...)):
         pred_class = int(np.argmax(preds[0]))
         confidence = float(preds[0][pred_class])
 
-        if confidence < 0.47:
+        if confidence < 0.55:
             disease_name = "Failed to predict"
-            recommendation = "Confidence is too low to make a reliable prediction."
+            recommendation = "This does not appear to be a valid skin disease image. Kindly upload a clear skin disease picture."
         else:
             disease_name, recommendation = class_indices[pred_class]
 

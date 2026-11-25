@@ -205,19 +205,29 @@ function UPLOAD() {
           {/* Render Modern RESULT Component */}
           {prediction && (
             <div style={{ width: "100%", marginTop: "20px" }}>
-              <RESULT
-                result={`${prediction.disease_name} (Confidence: ${getFormattedConfidence(prediction.confidence)})`}
-                symptoms={
-                  prediction.symptoms || [
-                    "Please consult a certified dermatologist for professional symptom evaluation.",
-                  ]
-                }
-                remedies={
-                  prediction.recommendation
-                    ? [prediction.recommendation]
-                    : ["Keep the area clean, dry, and avoid irritation."]
-                }
-              />
+              {prediction.disease_name === "Failed to predict" ? (
+                <RESULT
+                  result={prediction.disease_name}
+                  symptoms={[]}
+                  remedies={
+                    prediction.recommendation ? [prediction.recommendation] : []
+                  }
+                />
+              ) : (
+                <RESULT
+                  result={`${prediction.disease_name} (Confidence: ${getFormattedConfidence(prediction.confidence)})`}
+                  symptoms={
+                    prediction.symptoms || [
+                      "Please consult a certified dermatologist for professional symptom evaluation.",
+                    ]
+                  }
+                  remedies={
+                    prediction.recommendation
+                      ? [prediction.recommendation]
+                      : ["Keep the area clean, dry, and avoid irritation."]
+                  }
+                />
+              )}
             </div>
           )}
 
