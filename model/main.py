@@ -1,36 +1,29 @@
-import base64
+import io
+import os
 import numpy as np
 import tensorflow as tf
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from PIL import Image
-import io
-import os
-import cv2
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  
-    allow_headers=["*"],  
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")), name="static")
-
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
 model_path = os.path.join(BASE_DIR, "app", "best_model_updated.h5")
+
 if not os.path.isfile(model_path):
     raise FileNotFoundError(f"Model file not found at: {model_path}")
 
 model = tf.keras.models.load_model(model_path)
-last_conv_layer_name = "out_relu"
 
 class_indices = {
     0: ['Acne and Rosacea Photos', "Use acne-specific creams like benzoyl peroxide."],
@@ -80,32 +73,15 @@ def preprocess_image(image: Image.Image):
     img_array = np.expand_dims(img_array, axis=0) / 255.0
     return img_array
 
-def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index=None):
-    grad_model = tf.keras.models.Model(
-        [model.inputs[0]], [model.get_layer(last_conv_layer_name).output, model.output]
-    )
-    with tf.GradientTape() as tape:
-        last_conv_layer_output, preds = grad_model(img_array)
-        if pred_index is None:
-            pred_index = tf.argmax(preds[0])
-        class_channel = preds[:, pred_index]
-
-    grads = tape.gradient(class_channel, last_conv_layer_output)
-    pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
-    last_conv_layer_output = last_conv_layer_output[0]
-    heatmap = last_conv_layer_output @ pooled_grads[..., tf.newaxis]
-    heatmap = tf.squeeze(heatmap)
-    heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
-    return heatmap.numpy()
-
 @app.post("/predict/")
 async def upload_image(file: UploadFile = File(...)):
     try:
-        image = Image.open(io.BytesIO(await file.read()))
+        image_bytes = await file.read()
+        image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         img_array = preprocess_image(image)
 
-        preds = model.predict(img_array)
-        pred_class = np.argmax(preds[0])
+        preds = model.predict(img_array, verbose=0)
+        pred_class = int(np.argmax(preds[0]))
         confidence = float(preds[0][pred_class])
 
         if confidence < 0.47:
@@ -114,28 +90,11 @@ async def upload_image(file: UploadFile = File(...)):
         else:
             disease_name, recommendation = class_indices[pred_class]
 
-        heatmap = make_gradcam_heatmap(img_array, model, last_conv_layer_name)
-
-        original_image = cv2.cvtColor(np.array(image), cv2.COLOR_RGBA2RGB)
-        original_image = cv2.resize(original_image, (224, 224))
-
-        heatmap = cv2.resize(heatmap, (224, 224))
-        heatmap = (heatmap - heatmap.min()) / (heatmap.max() - heatmap.min())
-        heatmap_colored = cv2.applyColorMap(np.uint8(255 * heatmap), cv2.COLORMAP_JET)
-        superimposed_img = cv2.addWeighted(original_image, 0.6, heatmap_colored, 0.4, 0)
-
-        output_path = "static/gradcam_output.png"
-        cv2.imwrite(output_path, superimposed_img)
-
-        server_ip = "192.168.112.100"
-        heatmap_url = f"http://{server_ip}:8000/static/gradcam_output.png"
-
         return JSONResponse(content={
-            "predicted_class": int(pred_class),
+            "predicted_class": pred_class,
             "disease_name": disease_name,
             "confidence": confidence,
-            "recommendation": recommendation,
-            "heatmap_image_url": f"http://127.0.0.1:8000/static/gradcam_output.png"
+            "recommendation": recommendation
         })
 
     except Exception as e:
